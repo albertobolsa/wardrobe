@@ -1,0 +1,10 @@
+﻿<h1>Available locations</h1>
+<p *ngIf="!locations"><em>Loading...</em></p>
+
+<ul>
+    <li [routerLinkActive]="['link-active']" *ngFor="let location of locations">
+        <a [routerLink]="['/location-detail', location.id]">
+            {{ location.name }}
+        </a>
+    </li>
+</ul>
