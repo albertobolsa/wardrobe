@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +23,9 @@ namespace Wardrobe.Service
         {
             services.AddMvc();
             services.AddTransient<IWardrobeRepository, WardrobeRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
             services.AddDbContext<WardrobeDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
+            services.AddDbContext<ImageDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,14 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using Wardrobe.DataAccess.Interfaces;
+using Wardrobe.Model.Entities;
 
 namespace Wardrobe.Service.Controllers
 {
     [Route("/Image")]
     public class ImageController : Controller
     {
-        [HttpGet]
-        public IActionResult Image()
+        private readonly IImageRepository Repository;
+
+        public ImageController(IImageRepository repository)
         {
-            return base.File(@"Image path", "image/jpeg");
+            Repository = repository;
+        }
+
+        [HttpGet("{id}", Name = "ImageGet")]
+        public IActionResult Image(Guid id)
+        {
+            var img = Repository.GetImage(id);
+
+            if (img == null)
+            {
+                throw new Exception("Image not found");
+            }
+
+            return base.File(img.ImageFile, "image/jpeg");
         }
     }
 }

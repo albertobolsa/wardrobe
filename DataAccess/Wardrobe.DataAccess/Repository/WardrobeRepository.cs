@@ -18,29 +18,29 @@ namespace Wardrobe.DataAccess.Repository
 
         public List<Location> GetLocations(Guid userId)
         {
-            return _context.Location.ToList();
+            return _context.Locations.ToList();
         }
 
         public Location GetLocationById(Guid locationId)
         {
-            return _context.Location.SingleOrDefault(l => l.Id == locationId);
+            return _context.Locations.SingleOrDefault(l => l.Id == locationId);
         }
 
         public void AddLocation(Location location)
         {
-            _context.Location.Add(location);
+            _context.Locations.Add(location);
             _context.SaveChanges();
         }
 
         public void UpdateLocation(Guid id, Location location)
         {
-            _context.Location.Update(location);
+            _context.Locations.Update(location);
             _context.SaveChanges();
         }
 
         public void DeleteLocation(Guid id)
         {
-            _context.Location.Remove(GetLocationById(id));
+            _context.Locations.Remove(GetLocationById(id));
             _context.SaveChanges();
         }
     }

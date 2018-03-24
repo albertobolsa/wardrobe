@@ -5,7 +5,7 @@ namespace Wardrobe.DataAccess.Context
 {
     public class WardrobeDataContext : DbContext
     {
-        public DbSet<Location> Location { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public WardrobeDataContext(DbContextOptions<WardrobeDataContext> options) : base(options)
         {
