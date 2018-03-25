@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
+using Wardrobe.Service.Interfaces;
 
 namespace Wardrobe.Service.Controllers
 {
@@ -11,44 +11,46 @@ namespace Wardrobe.Service.Controllers
     [Route("api/ClothingItem")]
     public class ClothingItemController : BaseWardrobeController
     {
-        public ClothingItemController(IWardrobeRepository repository, ILogger<ClothingItemController> logger) : base(repository, logger) { }
+        private readonly IClothingItemService _service;
+        public ClothingItemController(IClothingItemService service, ILogger<ClothingItemController> logger) : base(logger)
+        {
+            _service = service;
+        }
 
         [HttpGet]
         public IEnumerable<ClothingItem> Get()
         {
-            var result = Repository.GetClothingItems(Guid.NewGuid());
-            return result;
+            return _service.GetClothingItems(Guid.NewGuid());
         }
 
         [HttpGet("{id}", Name = "GetClothingItemById")]
         public ClothingItem Get(Guid id)
         {
-            return Repository.GetClothingItemById(id);
+            return _service.GetClothingItemById(id);
         }
 
         [HttpGet("location/{locationId}", Name = "GetClothingItemsByLocation")]
         public IEnumerable<ClothingItem> GetByLocation(Guid locationId)
         {
-            return Repository.GetClothingItemsByLocationId(locationId);
+            return _service.GetClothingItemsByLocationId(locationId);
         }
 
         [HttpPost]
         public void Post([FromBody]ClothingItem value)
         {
-            value.Id = Guid.NewGuid();
-            Repository.AddLocation(value);
+            _service.AddLocation(value);
         }
 
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody]ClothingItem value)
         {
-            Repository.UpdateClothingItem(id, value);
+            _service.UpdateClothingItem(id, value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
-            Repository.DeleteClothingItem(id);
+            _service.DeleteClothingItem(id);
         }
     }
 }

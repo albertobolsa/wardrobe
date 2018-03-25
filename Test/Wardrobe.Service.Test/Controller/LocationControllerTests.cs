@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
 using Wardrobe.Service.Controllers;
+using Wardrobe.Service.Interfaces;
 
 namespace Wardrobe.Service.Test.Controller
 {
@@ -12,19 +11,17 @@ namespace Wardrobe.Service.Test.Controller
     public class LocationControllerTests
     {
         private readonly Guid TestUser = Guid.Parse("c49c690b-2cb2-44f4-a067-60706b1ed0d3");
-        private readonly IWardrobeRepository _Repository;
-        private readonly ILogger _Logger;
+        private readonly ILocationService _service;
 
-        public LocationControllerTests(IWardrobeRepository repository, ILogger logger)
+        public LocationControllerTests(ILocationService service)
         {
-            _Repository = repository;
-            _Logger = logger;
+            _service = service;
         }
 
         [Test]
         public void LocationController_Get_ReturnsElements()
         {
-            var controller = new LocationController(_Repository, null);
+            var controller = new LocationController(_service, null);
             var locations = controller.Get();
             Assert.AreEqual(true, locations.Any());
         }
@@ -41,7 +38,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository, null);
+            var controller = new LocationController(_service, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 
@@ -60,7 +57,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository, null);
+            var controller = new LocationController(_service, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 
@@ -85,7 +82,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository, null);
+            var controller = new LocationController(_service, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 

@@ -8,6 +8,8 @@ using Wardrobe.DataAccess.Context;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.DataAccess.Repository;
 using Wardrobe.Service.Filters;
+using Wardrobe.Service.Interfaces;
+using Wardrobe.Service.Service;
 
 namespace Wardrobe.Service
 {
@@ -28,6 +30,8 @@ namespace Wardrobe.Service
             var builder = services.AddMvc();
             services.AddTransient<IWardrobeRepository, WardrobeRepository>();
             services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddTransient<ILocationService, LocationService>();
+            services.AddTransient<IClothingItemService, ClothingItemService>();
             services.AddDbContext<WardrobeDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
             services.AddDbContext<ImageDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
             services.AddDbContext<LogDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));

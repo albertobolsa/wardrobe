@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Wardrobe.DataAccess.Context;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.DataAccess.Repository;
+using Wardrobe.Service.Interfaces;
 using Wardrobe.Service.Test.Controller;
 
 namespace TestRunnerSimulator
@@ -15,7 +16,7 @@ namespace TestRunnerSimulator
         {
             var serviceProvider = setupApplication();
 
-            var test = new LocationControllerTests(serviceProvider.GetService<IWardrobeRepository>(), null);
+            var test = new LocationControllerTests(serviceProvider.GetService<ILocationService>());
             test.LocationController_Get_ReturnsElements();
             test.LocationController_Post_AddsNewElement();
             test.LocationController_Put_UpdatesElement();

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
+using Wardrobe.Service.Interfaces;
 
 namespace Wardrobe.Service.Controllers
 {
@@ -11,38 +11,40 @@ namespace Wardrobe.Service.Controllers
     [Route("api/Location")]
     public class LocationController : BaseWardrobeController
     {
-        public LocationController(IWardrobeRepository repository, ILogger<LocationController> logger) : base(repository, logger) { }
+        private readonly ILocationService _service;
+        public LocationController(ILocationService service, ILogger<LocationController> logger) : base(logger)
+        {
+            _service = service;
+        }
 
         [HttpGet]
         public IEnumerable<Location> Get()
         {
-            return Repository.GetLocations(Guid.NewGuid());
+            return _service.GetLocations(Guid.NewGuid());
         }
 
         [HttpGet("{id}", Name = "GetLocation")]
         public Location Get(Guid id)
         {
-            return Repository.GetLocationById(id);
+            return _service.GetLocationById(id);
         }
         
         [HttpPost]
         public void Post([FromBody]Location value)
         {
-            value.UserId = Guid.Parse("bef713c4-049a-42e8-b0f0-cfcee4cc7e2c");
-            value.Id = Guid.NewGuid();
-            Repository.AddLocation(value);
+            _service.AddLocation(value);
         }
         
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody]Location value)
         {
-            Repository.UpdateLocation(id, value);
+            _service.UpdateLocation(id, value);
         }
         
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
-            Repository.DeleteLocation(id);
+            _service.DeleteLocation(id);
         }
     }
 }

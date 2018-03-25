@@ -24,11 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		SolutionItems\create_db_script.sql = SolutionItems\create_db_script.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunnerSimulator", "TestRunnerSimulator\TestRunnerSimulator.csproj", "{FE3D8139-FF25-47C5-ADED-C173D862721B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRunnerSimulator", "TestRunnerSimulator\TestRunnerSimulator.csproj", "{FE3D8139-FF25-47C5-ADED-C173D862721B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{41ABBE26-E377-494F-9C62-B3C375CEB02B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "Client\WebClient\WebClient.csproj", "{3AE2C545-49F7-43BD-909D-5FDF59DEFF2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "Client\WebClient\WebClient.csproj", "{3AE2C545-49F7-43BD-909D-5FDF59DEFF2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

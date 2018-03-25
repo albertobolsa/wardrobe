@@ -25,7 +25,7 @@ namespace Wardrobe.DataAccess.Repository
             return _context.ClothingItems.Where(c => c.LocationId == locationId).ToList();
         }
 
-        public void AddLocation(ClothingItem clothingItem)
+        public void AddClothingItem(ClothingItem clothingItem)
         {
             _context.ClothingItems.Add(clothingItem);
             _context.SaveChanges();
