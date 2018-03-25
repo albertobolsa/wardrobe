@@ -1,4 +1,11 @@
 ﻿<div class="clothing-item-card">
+    <button (click)="isEdit = !isEdit">Edit</button>
+
+    <div *ngFor="let image of item.images">
+        <img class="clothing-item-image" src="http://localhost/Wardrobe.Service/image/{{image.imageId}}" />
+        <button *ngIf="isEdit" (click)="unlinkImage(image.imageId, item.id)">Unlink</button>
+    </div>
+
     <p>Type: {{item.type}}</p>
     <p>Size: {{item.size}}</p>
     <p>Purchased at: {{item.purchaseLocation}}</p>
@@ -6,4 +13,6 @@
     <p>Fits: {{item.isFit}}</p>
     <p>Archived: {{item.isArchived}}</p>
     <p>Comments: {{item.comments}}</p>
+    
+    <input *ngIf="isEdit" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload"/>
 </div>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Wardrobe.Model.Entities;
 
 namespace Wardrobe.DataAccess.Repository
@@ -9,7 +10,9 @@ namespace Wardrobe.DataAccess.Repository
     {
         public List<ClothingItem> GetClothingItems(Guid userId)
         {
-            return _context.ClothingItems.ToList();
+            return _context.ClothingItems
+                           .Include(c => c.Images)
+                           .ToList();
         }
 
         public ClothingItem GetClothingItemById(Guid clothingItemId)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wardrobe.Model.Entities
@@ -16,5 +17,7 @@ namespace Wardrobe.Model.Entities
         public bool IsFit { get; set; }
         public bool IsArchived { get; set; }
         public string Comments { get; set; }
+
+        public virtual ICollection<ClothingItemImage> Images { get; set; }
     }
 }

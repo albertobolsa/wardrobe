@@ -8,5 +8,7 @@ namespace Wardrobe.DataAccess.Interfaces
         Guid AddImage(Image image);
         Image GetImage(Guid imageId);
         void DeleteImage(Guid imageId);
+        void LinkImageToClothingItem(Guid imageId, Guid clothingItemId);
+        void UnlinkImageToClothingItem(Guid imageId, Guid clothingItemId);
     }
 }

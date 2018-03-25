@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
 
@@ -15,7 +16,9 @@ namespace Wardrobe.Service.Controllers
         [HttpGet]
         public IEnumerable<ClothingItem> Get()
         {
-            return Repository.GetClothingItems(Guid.NewGuid());
+
+            var result = Repository.GetClothingItems(Guid.NewGuid());
+            return result;
         }
 
         [HttpGet("{id}", Name = "GetClothingItemById")]

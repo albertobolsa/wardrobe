@@ -14,6 +14,7 @@ import { TransferComponent } from './components/transfer/transfer.component';
 import { ClothingItemCardComponent } from "./components/clothingitemcard/clothingitemcard.component";
 import { WardrobeService } from "./services/wardrobeservice";
 import { ClothingItemService } from "./services/clothingItemService";
+import { ImageService } from "./services/imageService";
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { ClothingItemService } from "./services/clothingItemService";
     ],
     providers: [
         WardrobeService,
-        ClothingItemService
+        ClothingItemService,
+        ImageService
     ]
 })
 export class AppModuleShared {

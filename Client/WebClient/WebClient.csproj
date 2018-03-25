@@ -30,6 +30,7 @@
     <None Remove="ClientApp\app\environments\environment.dev.ts" />
     <None Remove="ClientApp\app\environments\environment.ts" />
     <None Remove="ClientApp\app\services\clothingItemService.ts" />
+    <None Remove="ClientApp\app\services\imageService.ts" />
     <None Remove="ClientApp\app\services\wardrobeservice.ts" />
   </ItemGroup>
 
@@ -43,6 +44,7 @@
     <TypeScriptCompile Include="ClientApp\app\environments\environment.dev.ts" />
     <TypeScriptCompile Include="ClientApp\app\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\clothingItemService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\imageService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\wardrobeservice.ts" />
   </ItemGroup>
 
