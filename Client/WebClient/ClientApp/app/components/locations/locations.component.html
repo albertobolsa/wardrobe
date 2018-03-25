@@ -1,10 +1,22 @@
-﻿<h1>Available locations</h1>
-<p *ngIf="!locations"><em>Loading...</em></p>
+﻿<div class="splash" *ngIf="isLoading"><em>Loading...</em></div>
+<div class="splash" *ngIf="isProcessingRequest"><em>Processing request...</em></div>
 
-<ul>
-    <li [routerLinkActive]="['link-active']" *ngFor="let location of locations">
+<button (click)="newLocationClick($event)">New Location</button>
+<div *ngIf="isNewLocationOpen">
+    <input type="text" [(ngModel)]="newLocation.name" />
+    <button (click)="saveLocationClick($event)">Save</button>
+    <button (click)="discardLocationClick($event)">Discard</button>
+</div>
+<div>
+    <div class="location-card" *ngFor="let location of locations">
         <a [routerLink]="['/location-detail', location.id]">
             {{ location.name }}
         </a>
-    </li>
-</ul>
+
+        <div id="map-{{ location.id }}" class="map">
+            Loading map
+        </div>
+
+        <button (click)="deleteLocationClick($event, location.id)">Delete</button>
+    </div>
+</div>

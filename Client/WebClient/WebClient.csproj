@@ -24,12 +24,24 @@
     <None Remove="ClientApp\app\components\allitems\allitems.component.ts" />
     <None Remove="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <None Remove="ClientApp\app\components\locations\locations.component.ts" />
+    <None Remove="ClientApp\app\entities\location.ts" />
+    <None Remove="ClientApp\app\environments\environment.dev.ts" />
+    <None Remove="ClientApp\app\environments\environment.ts" />
+    <None Remove="ClientApp\app\services\wardrobeservice.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\allitems\allitems.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\locations\locations.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\entities\location.ts" />
+    <TypeScriptCompile Include="ClientApp\app\environments\environment.dev.ts" />
+    <TypeScriptCompile Include="ClientApp\app\environments\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\wardrobeservice.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\auth\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

@@ -11,6 +11,7 @@ import { LocationsComponent } from './components/locations/locations.component';
 import { LocationDetailComponent } from './components/locationdetail/locationdetail.component';
 import { AllItemsComponent } from './components/allitems/allitems.component';
 import { TransferComponent } from './components/transfer/transfer.component';
+import { WardrobeService } from "./services/wardrobeservice";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,9 @@ import { TransferComponent } from './components/transfer/transfer.component';
             { path: 'transfer', component: TransferComponent },
             { path: '**', redirectTo: 'home' },
         ])
+    ],
+    providers: [
+        WardrobeService
     ]
 })
 export class AppModuleShared {

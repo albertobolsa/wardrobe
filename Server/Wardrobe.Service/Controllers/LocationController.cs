@@ -27,6 +27,8 @@ namespace Wardrobe.Service.Controllers
         [HttpPost]
         public void Post([FromBody]Location value)
         {
+            value.UserId = Guid.Parse("bef713c4-049a-42e8-b0f0-cfcee4cc7e2c");
+            value.Id = Guid.NewGuid();
             Repository.AddLocation(value);
         }
         
