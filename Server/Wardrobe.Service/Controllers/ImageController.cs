@@ -1,88 +1,49 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using Wardrobe.DataAccess.Interfaces;
-using Wardrobe.Model.Entities;
+using Microsoft.Extensions.Logging;
+using Wardrobe.Service.Interfaces;
 
 namespace Wardrobe.Service.Controllers
 {
     [Route("/Image")]
-    public class ImageController : Controller
+    public class ImageController : BaseWardrobeController
     {
-        private readonly IImageRepository Repository;
-
-        public ImageController(IImageRepository repository)
+        private readonly IImageService _service;
+        public ImageController(IImageService service, ILogger<LocationController> logger) : base(logger)
         {
-            Repository = repository;
+            _service = service;
         }
 
         [HttpGet("{id}", Name = "ImageGet")]
         public IActionResult Image(Guid id)
         {
-            var img = Repository.GetImage(id);
-
-            if (img == null)
-            {
-                throw new Exception("Image not found");
-            }
-
-            return base.File(img.ImageFile, "image/jpeg");
+            var image = _service.GetImage(imageId: id);
+            return File(image.ImageFile, "image/jpeg");
         }
 
         [HttpPost("Link/{id}", Name = "ImagePost")]
         public HttpResponseMessage PostImage()
         {
-            var response = new HttpResponseMessage();
-            var httpRequest = HttpContext.Request;
-
-            var clothingItemId = httpRequest.Form["clothingItemId"];
-            if (string.IsNullOrEmpty(clothingItemId))
-            {
-                throw new Exception("Error");
-            }
             
-            if (httpRequest.Form.Files.Count > 0)
-            {
-                foreach (var file in httpRequest.Form.Files)
-                {
-                    var image = new Image
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = file.FileName
-                    };
+            var httpRequest = HttpContext.Request;
+            var clothingItemId = httpRequest.Form["clothingItemId"];
 
-                    using (var ms = new MemoryStream())
-                    {
-                        file.CopyTo(ms);
-                        image.ImageFile = ms.ToArray(); 
-                    }
+            _service.UploadAndLinkImageToClothingItem(clothingItemId, httpRequest.Form.Files);
 
-                    Repository.AddImage(image);
-                    Repository.LinkImageToClothingItem(imageId: image.Id, clothingItemId: Guid.Parse(clothingItemId));
-                }
-            }
-
-            return response;
+            return new HttpResponseMessage();
         }
 
         [HttpPost("Unlink", Name = "ImageUnlink")]
         public HttpResponseMessage UnlinkImage()
         {
-            var response = new HttpResponseMessage();
             var httpRequest = HttpContext.Request;
-
             var clothingItemId = httpRequest.Form["clothingItemId"];
             var imageId = httpRequest.Form["imageId"];
-            if (string.IsNullOrEmpty(clothingItemId)
-                || string.IsNullOrEmpty(imageId))
-            {
-                throw new Exception("Error");
-            }
 
-            Repository.UnlinkImageToClothingItem(imageId: Guid.Parse(imageId), clothingItemId: Guid.Parse(clothingItemId));
+            _service.UnlinkImageFromClothingItem(imageId: imageId, clothingItemId: clothingItemId);
             
-            return response;
+            return new HttpResponseMessage();
         }
     }
 }

@@ -32,10 +32,11 @@ namespace Wardrobe.Service
             services.AddTransient<IImageRepository, ImageRepository>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IClothingItemService, ClothingItemService>();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<ILoggingService, LoggingService>();
             services.AddDbContext<WardrobeDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
             services.AddDbContext<ImageDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
             services.AddDbContext<LogDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseName")));
-
 
             builder.AddMvcOptions(o => { o.Filters.Add(new GlobalExceptionFilter(_loggerFactory)); });
         }
