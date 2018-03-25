@@ -8,14 +8,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WardrobeService {
 
-    private http: Http;
-
-    constructor(http: Http) { this.http = http; }
+    constructor(private http: Http) {}
 
     getLocations(): Observable<WardrobeLocation[]> {
 
         return this.http.get(environment.serviceUrl + '/api/location').map(res => {
             return res.json() as WardrobeLocation[];
+        });
+    }
+
+    getLocationById(locationId: string): Observable<WardrobeLocation> {
+        return this.http.get(environment.serviceUrl + '/api/location/' + locationId).map(res => {
+            return res.json() as WardrobeLocation;
         });
     }
 

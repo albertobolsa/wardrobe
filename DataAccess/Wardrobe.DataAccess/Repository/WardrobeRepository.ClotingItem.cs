@@ -14,12 +14,12 @@ namespace Wardrobe.DataAccess.Repository
 
         public ClothingItem GetClothingItemById(Guid clothingItemId)
         {
-            return _context.ClothingItems.SingleOrDefault(l => l.Id == clothingItemId);
+            return _context.ClothingItems.SingleOrDefault(c => c.Id == clothingItemId);
         }
 
         public List<ClothingItem> GetClothingItemsByLocationId(Guid locationId)
         {
-            return _context.ClothingItems.Where(l => l.Id == locationId).ToList();
+            return _context.ClothingItems.Where(c => c.LocationId == locationId).ToList();
         }
 
         public void AddLocation(ClothingItem clothingItem)

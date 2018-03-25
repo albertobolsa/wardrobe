@@ -7,7 +7,7 @@ namespace Wardrobe.Model.Entities
     public class ClothingItem
     {
         public Guid Id { get; set; }
-        public Guid LocationId { get; set; }
+        public Guid? LocationId { get; set; }
         public string Type { get; set; }
         public string Size { get; set; }
         public string PurchaseLocation { get; set; }
