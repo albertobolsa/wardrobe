@@ -30,6 +30,7 @@ namespace Wardrobe.Service
             var builder = services.AddMvc();
             services.AddTransient<IWardrobeRepository, WardrobeRepository>();
             services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddTransient<ILoggingRepository, LoggingRepository>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IClothingItemService, ClothingItemService>();
             services.AddTransient<IImageService, ImageService>();

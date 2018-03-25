@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Wardrobe.Model.Entities.Logging;
 
-namespace Wardrobe.Service.Interfaces
+namespace Wardrobe.DataAccess.Interfaces
 {
-    public interface ILoggingService
+    public interface ILoggingRepository
     {
         List<LogMessage> GetLogMessages();
         LogMessage GetLogMessageById(int logMessageId);
