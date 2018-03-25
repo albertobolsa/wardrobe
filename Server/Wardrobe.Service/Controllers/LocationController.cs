@@ -18,7 +18,7 @@ namespace Wardrobe.Service.Controllers
             return Repository.GetLocations(Guid.NewGuid());
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetLocation")]
         public Location Get(Guid id)
         {
             return Repository.GetLocationById(id);
