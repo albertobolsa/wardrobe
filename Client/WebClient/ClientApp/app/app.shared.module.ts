@@ -19,6 +19,9 @@ import { ClothingItemService } from "./services/clothingItemService";
 import { ImageService } from "./services/imageService";
 import { LogService } from "./services/log.service";
 import { AppErrorHandler } from "./handlers/AppErrorHandler";
+import { LogFilterPipe } from "./pipes/LogMessagePipe";
+import { ClothingItemFilterPipe } from "./pipes/ClothingItemPipe";
+import { LocationFilterPipe } from "./pipes/LocationPipe";
 
 @NgModule({
     declarations: [
@@ -30,7 +33,8 @@ import { AppErrorHandler } from "./handlers/AppErrorHandler";
         AllItemsComponent,
         TransferComponent,
         ClothingItemCardComponent,
-        LogsComponent
+        LogsComponent,
+        LogFilterPipe, ClothingItemFilterPipe, LocationFilterPipe
     ],
     imports: [
         CommonModule,
