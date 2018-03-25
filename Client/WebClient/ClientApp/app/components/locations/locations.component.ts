@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LocationsComponent implements OnInit {
     public locations: WardrobeLocation[];
-    public newLocation: WardrobeLocation;
+    public newLocation: WardrobeLocation = new WardrobeLocation();
     public isNewLocationOpen: boolean = false;
     public isLoading: boolean = true;
     public isProcessingRequest: boolean = false;
@@ -72,12 +72,20 @@ export class LocationsComponent implements OnInit {
                         zoom: 12, disableDefaultUI: true
                     });
                 }
-
                 this.isLoading = false;
             }, 50);
         }, error => {
             console.error(error);
             this.isLoading = false;
+        });
+
+        var map = new google.maps.Map(document.getElementById('map-new'), {
+            center: { lat: 47.366670, lng: 47.366670 },
+            zoom: 12, disableDefaultUI: true
+        });
+        google.maps.event.addListener(map, "click", (e: any) => {
+            this.newLocation.latitude = e.latLng.lat();
+            this.newLocation.longitude = e.latLng.lng();
         });
     }
 }
