@@ -11,12 +11,11 @@ namespace Wardrobe.Service.Controllers
     [Route("api/ClothingItem")]
     public class ClothingItemController : BaseWardrobeController
     {
-        public ClothingItemController(IWardrobeRepository repository) : base(repository) { }
+        public ClothingItemController(IWardrobeRepository repository, ILogger<ClothingItemController> logger) : base(repository, logger) { }
 
         [HttpGet]
         public IEnumerable<ClothingItem> Get()
         {
-
             var result = Repository.GetClothingItems(Guid.NewGuid());
             return result;
         }

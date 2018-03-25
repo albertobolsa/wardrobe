@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
@@ -12,16 +13,18 @@ namespace Wardrobe.Service.Test.Controller
     {
         private readonly Guid TestUser = Guid.Parse("c49c690b-2cb2-44f4-a067-60706b1ed0d3");
         private readonly IWardrobeRepository _Repository;
+        private readonly ILogger _Logger;
 
-        public LocationControllerTests(IWardrobeRepository repository)
+        public LocationControllerTests(IWardrobeRepository repository, ILogger logger)
         {
             _Repository = repository;
+            _Logger = logger;
         }
 
         [Test]
         public void LocationController_Get_ReturnsElements()
         {
-            var controller = new LocationController(_Repository);
+            var controller = new LocationController(_Repository, null);
             var locations = controller.Get();
             Assert.AreEqual(true, locations.Any());
         }
@@ -38,7 +41,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository);
+            var controller = new LocationController(_Repository, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 
@@ -57,7 +60,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository);
+            var controller = new LocationController(_Repository, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 
@@ -82,7 +85,7 @@ namespace Wardrobe.Service.Test.Controller
                 UserId = TestUser
             };
 
-            var controller = new LocationController(_Repository);
+            var controller = new LocationController(_Repository, null);
             controller.Post(newLocation);
             var location = controller.Get(newLocation.Id);
 

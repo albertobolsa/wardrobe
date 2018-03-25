@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
 
@@ -10,7 +11,7 @@ namespace Wardrobe.Service.Controllers
     [Route("api/Location")]
     public class LocationController : BaseWardrobeController
     {
-        public LocationController(IWardrobeRepository repository) : base(repository) { }
+        public LocationController(IWardrobeRepository repository, ILogger<LocationController> logger) : base(repository, logger) { }
 
         [HttpGet]
         public IEnumerable<Location> Get()

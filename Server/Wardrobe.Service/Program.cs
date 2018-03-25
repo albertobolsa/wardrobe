@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Wardrobe.Service.Logging;
 
 namespace Wardrobe.Service
 {
@@ -13,6 +16,12 @@ namespace Wardrobe.Service
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureLogging((hostingContext, logging) => {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddProvider(new DbLoggerProvider(LogLevel.Warning, hostingContext.Configuration.GetConnectionString("DatabaseName")));
+                })
                 .Build();
     }
 }

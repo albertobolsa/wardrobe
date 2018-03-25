@@ -15,7 +15,7 @@ namespace TestRunnerSimulator
         {
             var serviceProvider = setupApplication();
 
-            var test = new LocationControllerTests(serviceProvider.GetService<IWardrobeRepository>());
+            var test = new LocationControllerTests(serviceProvider.GetService<IWardrobeRepository>(), null);
             test.LocationController_Get_ReturnsElements();
             test.LocationController_Post_AddsNewElement();
             test.LocationController_Put_UpdatesElement();
