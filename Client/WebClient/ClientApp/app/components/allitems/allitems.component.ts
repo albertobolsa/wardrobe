@@ -4,7 +4,8 @@ import { ClothingItemService } from "../../services/clothingItemService";
 
 @Component({
     selector: 'all-items',
-    templateUrl: './allitems.component.html'
+    templateUrl: './allitems.component.html',
+    styleUrls: ['./allitems.component.css']
 })
 export class AllItemsComponent {
 

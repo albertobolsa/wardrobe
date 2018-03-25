@@ -1,18 +1,54 @@
-﻿<div class="clothing-item-card">
-    <button (click)="isEdit = !isEdit">Edit</button>
-
-    <div *ngFor="let image of item.images">
-        <img class="clothing-item-image" src="http://localhost/Wardrobe.Service/image/{{image.imageId}}" />
-        <button *ngIf="isEdit" (click)="unlinkImage(image.imageId, item.id)">Unlink</button>
+﻿<div class="panel panel-default clothing-item-card">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{item.type}}</h3>
     </div>
-
-    <p>Type: {{item.type}}</p>
-    <p>Size: {{item.size}}</p>
-    <p>Purchased at: {{item.purchaseLocation}}</p>
-    <p>Price: {{item.price}} {{item.currency}}</p>
-    <p>Fits: {{item.isFit}}</p>
-    <p>Archived: {{item.isArchived}}</p>
-    <p>Comments: {{item.comments}}</p>
-    
-    <input *ngIf="isEdit" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload"/>
+    <div class="panel-body">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="type">Type</label>
+                    <input type="text" [(ngModel)]="item.type" class="form-control" name="type" id="type" placeholder="Type" [attr.disabled]="isEdit ? null : ''">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="size">Size</label>
+                    <input type="text" [(ngModel)]="item.size" class="form-control" name="size" id="size" placeholder="Size" [attr.disabled]="isEdit ? null : ''">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="type">Purchased at</label>
+                    <input type="text" [(ngModel)]="item.purchaseLocation" class="form-control" name="purchaseLocation" id="purchaseLocation" placeholder="Purchased at" [attr.disabled]="isEdit ? null : ''">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="price">Price</label>
+                    <input type="text" [(ngModel)]="item.price" class="form-control" name="price" id="price" placeholder="Price" [attr.disabled]="isEdit ? null : ''">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="size">Currency</label>
+                    <input type="text" [(ngModel)]="item.currency" class="form-control" name="currency" id="currency" placeholder="Currency" [attr.disabled]="isEdit ? null : ''">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="isFit">Fits</label>
+                    <input class="form-check-input form-control" [(ngModel)]="item.isFit" name="isFit" type="checkbox" id="isFit" [attr.disabled]="isEdit ? null : ''">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="isArchived">Archived</label>
+                    <input class="form-check-input form-control" [(ngModel)]="item.isArchived" name="isArchived" type="checkbox" id="isArchived" [attr.disabled]="isEdit ? null : ''">
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="comments">Comments</label>
+                <textarea class="form-control" [(ngModel)]="item.comments" id="comments" rows="3" name="comments" placeholder="Comments" [attr.disabled]="isEdit ? null : ''"></textarea>
+            </div>
+        </form>
+        <div *ngFor="let image of item.images">
+            <img class="clothing-item-image" src="http://localhost/Wardrobe.Service/image/{{image.imageId}}" />
+            <button *ngIf="isEdit" (click)="unlinkImage(image.imageId, item.id)">Unlink</button>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <input *ngIf="isEdit" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload" />
+        <button *ngIf="!isEdit" (click)="isEdit = !isEdit">Edit</button>
+        <button class="btn btn-primary" *ngIf="isEdit" (click)="isEdit = !isEdit">Save</button>
+    </div>
 </div>
