@@ -1,0 +1,21 @@
+﻿<div class="log-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Application Logs</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let logMessage of logMessages">
+                    <td>{{logMessage.message}}</td>
+                    <td>{{logMessage.timestamp}}</td>
+                    <td>{{logMessage.logLevel}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -12,9 +12,11 @@ import { LocationDetailComponent } from './components/locationdetail/locationdet
 import { AllItemsComponent } from './components/allitems/allitems.component';
 import { TransferComponent } from './components/transfer/transfer.component';
 import { ClothingItemCardComponent } from "./components/clothingitemcard/clothingitemcard.component";
+import { LogsComponent } from "./components/logs/logs.component";
 import { WardrobeService } from "./services/wardrobeservice";
 import { ClothingItemService } from "./services/clothingItemService";
 import { ImageService } from "./services/imageService";
+import { LogService } from "./services/log.service";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import { ImageService } from "./services/imageService";
         LocationDetailComponent,
         AllItemsComponent,
         TransferComponent,
-        ClothingItemCardComponent
+        ClothingItemCardComponent,
+        LogsComponent
     ],
     imports: [
         CommonModule,
@@ -38,13 +41,15 @@ import { ImageService } from "./services/imageService";
             { path: 'location-detail/:id', component: LocationDetailComponent },
             { path: 'all-items', component: AllItemsComponent },
             { path: 'transfer', component: TransferComponent },
+            { path: 'logs', component: LogsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [
         WardrobeService,
         ClothingItemService,
-        ImageService
+        ImageService,
+        LogService
     ]
 })
 export class AppModuleShared {
