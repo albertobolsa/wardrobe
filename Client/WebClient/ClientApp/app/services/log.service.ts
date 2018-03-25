@@ -16,4 +16,14 @@ export class LogService {
             return res.json() as LogMessage[];
         });
     }
+
+    writeError(message: LogMessage) {
+        console.dir(message);
+        return this.http.post(environment.serviceUrl + '/api/Logging', message).map(res => {
+            return res.json() as LogMessage[];
+        }).subscribe(
+            data => console.log('success'),
+            error => console.log(error)
+        );;
+    }
 }

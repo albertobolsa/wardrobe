@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -13,10 +13,12 @@ import { AllItemsComponent } from './components/allitems/allitems.component';
 import { TransferComponent } from './components/transfer/transfer.component';
 import { ClothingItemCardComponent } from "./components/clothingitemcard/clothingitemcard.component";
 import { LogsComponent } from "./components/logs/logs.component";
+
 import { WardrobeService } from "./services/wardrobeservice";
 import { ClothingItemService } from "./services/clothingItemService";
 import { ImageService } from "./services/imageService";
 import { LogService } from "./services/log.service";
+import { AppErrorHandler } from "./handlers/AppErrorHandler";
 
 @NgModule({
     declarations: [
@@ -49,7 +51,8 @@ import { LogService } from "./services/log.service";
         WardrobeService,
         ClothingItemService,
         ImageService,
-        LogService
+        LogService,
+        { provide: ErrorHandler, useClass: AppErrorHandler }
     ]
 })
 export class AppModuleShared {

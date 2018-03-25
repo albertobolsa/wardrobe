@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities.Logging;
@@ -26,11 +27,13 @@ namespace Wardrobe.Service.Service
 
         public void AddLogMessage(LogMessage logMessage)
         {
+            logMessage.Timestamp = DateTime.UtcNow;
             _repository.AddLogMessage(logMessage);
         }
 
         public void UpdateLogMessage(int id, LogMessage logMessage)
         {
+            logMessage.Timestamp = DateTime.UtcNow;
             _repository.UpdateLogMessage(id, logMessage);
         }
 
