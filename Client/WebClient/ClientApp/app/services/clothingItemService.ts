@@ -18,15 +18,17 @@ export class ClothingItemService {
     }
 
     getClothingItemsForLocation(locationId: string): Observable<ClothingItem[]> {
-        console.log(locationId);
         return this.http.get(environment.serviceUrl + '/api/ClothingItem/location/' + locationId).map(res => {
-            console.dir(res.json());
             return res.json() as ClothingItem[];
         });
     }
 
     addClothingItem(clothingItem: ClothingItem): Observable<object> {
         return this.http.post(environment.serviceUrl + '/api/ClothingItem', clothingItem);
+    }
+
+    updateClothingItem(clothingItem: ClothingItem): Observable<object> {
+        return this.http.put(environment.serviceUrl + '/api/ClothingItem/' + clothingItem.id, clothingItem);
     }
 
     deleteClothingItem(clothingItemId: string): Observable<object> {

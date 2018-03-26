@@ -12,6 +12,8 @@ import { ClothingItemService } from "../../services/clothingItemService";
 export class LocationDetailComponent implements OnInit {
     public location: WardrobeLocation;
     public clothingItems: ClothingItem[];
+    public isNewItemOpen: boolean = false;
+    public newItem: ClothingItem = new ClothingItem();
 
     constructor(private route: ActivatedRoute, private locationService: WardrobeService, private clothingItemService: ClothingItemService ) { }
 
@@ -35,9 +37,14 @@ export class LocationDetailComponent implements OnInit {
         
         this.clothingItemService.getClothingItemsForLocation(locationId).subscribe(result => {
             this.clothingItems = result;
-            console.dir(result);
         }, error => {
             console.error(error);
         });
+    }
+
+    newItemClick(event: object) {
+        this.isNewItemOpen = true;
+        this.newItem = new ClothingItem();
+        this.newItem.locationId = this.location.id;
     }
 }

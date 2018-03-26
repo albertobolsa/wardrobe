@@ -32,6 +32,8 @@
     <None Remove="ClientApp\app\environments\environment.dev.ts" />
     <None Remove="ClientApp\app\environments\environment.ts" />
     <None Remove="ClientApp\app\handlers\AppErrorHandler.ts" />
+    <None Remove="ClientApp\app\pipes\ClothingItemPipe.ts" />
+    <None Remove="ClientApp\app\pipes\LocationPipe.ts" />
     <None Remove="ClientApp\app\pipes\LogMessagePipe.ts" />
     <None Remove="ClientApp\app\services\clothingItemService.ts" />
     <None Remove="ClientApp\app\services\imageService.ts" />
@@ -51,6 +53,8 @@
     <TypeScriptCompile Include="ClientApp\app\environments\environment.dev.ts" />
     <TypeScriptCompile Include="ClientApp\app\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\app\handlers\AppErrorHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pipes\ClothingItemPipe.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pipes\LocationPipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\pipes\LogMessagePipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\clothingItemService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\imageService.ts" />

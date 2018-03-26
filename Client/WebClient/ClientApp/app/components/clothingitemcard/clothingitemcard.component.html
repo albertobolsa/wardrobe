@@ -42,13 +42,15 @@
             </div>
         </form>
         <div *ngFor="let image of item.images">
-            <img class="clothing-item-image" src="http://localhost/Wardrobe.Service/image/{{image.imageId}}" />
+            <img class="clothing-item-image" src="{{baseImageUrl}}{{image.imageId}}" />
             <button *ngIf="isEdit" (click)="unlinkImage(image.imageId, item.id)">Unlink</button>
         </div>
     </div>
     <div class="panel-footer">
-        <input *ngIf="isEdit" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload" />
-        <button *ngIf="!isEdit" (click)="isEdit = !isEdit">Edit</button>
-        <button class="btn btn-primary" *ngIf="isEdit" (click)="isEdit = !isEdit">Save</button>
+        <input *ngIf="isEdit && item.id" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="btn upload" />
+        <button *ngIf="!isEdit" class="btn btn-primary" (click)="isEdit = !isEdit">Edit</button>
+        <button *ngIf="isEdit" class="btn btn-primary" (click)="saveClothingItem()">Save</button>
+        <button *ngIf="isEdit" class="btn" (click)="isEdit=!isEdit">Discard</button>
+        <button *ngIf="item.id"class="btn btn-danger" (click)="deleteClothingItem()">Delete</button>
     </div>
 </div>

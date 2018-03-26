@@ -10,7 +10,9 @@ import { ClothingItemService } from "../../services/clothingItemService";
 export class AllItemsComponent {
 
     public isLoading: boolean = true;
+    public isNewItemOpen: boolean = false;
     public clothingItems: ClothingItem[];
+    public newItem: ClothingItem = new ClothingItem();
 
     constructor(private service: ClothingItemService) { }
 
@@ -27,5 +29,10 @@ export class AllItemsComponent {
             console.error(error);
             this.isLoading = false;
         });
+    }
+
+    newItemClick(event: object) {
+        this.isNewItemOpen = true;
+        this.newItem = new ClothingItem();
     }
 }

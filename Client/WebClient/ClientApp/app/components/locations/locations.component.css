@@ -6,6 +6,7 @@
 .location-card {
     display: inline-block;
     margin-right: 15px;
+    vertical-align: top;
 }
 
 .splash {

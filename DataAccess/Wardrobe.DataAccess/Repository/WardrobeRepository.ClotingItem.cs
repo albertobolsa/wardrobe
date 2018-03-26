@@ -22,7 +22,9 @@ namespace Wardrobe.DataAccess.Repository
 
         public List<ClothingItem> GetClothingItemsByLocationId(Guid locationId)
         {
-            return _context.ClothingItems.Where(c => c.LocationId == locationId).ToList();
+            return _context.ClothingItems
+                           .Include(c => c.Images)
+                           .Where(c => c.LocationId == locationId).ToList();
         }
 
         public void AddClothingItem(ClothingItem clothingItem)

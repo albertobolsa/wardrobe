@@ -1,7 +1,15 @@
 ﻿<div *ngIf="location">
-    <h1>{{location.name}}</h1>
+    <h2>{{location.name}}</h2>
 </div>
-
-<div class="location-card" *ngFor="let item of clothingItems">
+<div class="input-group">
+    <span class="input-group-btn">
+        <button class="btn" (click)="newItemClick($event)">New</button>
+    </span>
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
+</div>
+<div [hidden]="!isNewItemOpen">
+    <clothing-item-card [item]="newItem" [isEdit]="true"></clothing-item-card>
+</div>
+<div class="location-card" *ngFor="let item of clothingItems | clothingItemFilter : searchText">
     <clothing-item-card [item]="item"></clothing-item-card>
 </div>
