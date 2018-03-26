@@ -8,17 +8,19 @@
         </div>
         <table class="table">
             <thead>
-                <tr>
-                    <th>Message</th>
-                    <th>Timestamp</th>
-                    <th>Level</th>
-                </tr>
+            <tr>
+                <th>Message</th>
+                <th>Stacktrace</th>
+                <th>Source</th>
+                <th>Timestamp</th>
+            </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let logMessage of logMessages | logFilter : searchText">
                     <td>{{logMessage.message}}</td>
+                    <td>{{logMessage.stacktrace}}</td>
+                    <td>{{logMessage.source}}</td>
                     <td>{{logMessage.timestamp}}</td>
-                    <td>{{logMessage.logLevel}}</td>
                 </tr>
             </tbody>
         </table>

@@ -8,6 +8,6 @@ export class AppErrorHandler implements ErrorHandler {
 
     handleError(error: any) {
 
-        this.service.showError(error.message);
+        this.service.showError('Unexpected error happened', error.message);
     }
 }

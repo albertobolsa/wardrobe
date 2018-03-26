@@ -40,12 +40,12 @@ export class LocationDetailComponent implements OnInit {
                 this.location = result;
             },
             response => {
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error loading location', response);
             });
     }
 
     loadItems(locationId: string) {
-        this.progress.show('Loading items');
+        this.progress.show('Loading clothing items');
         this.clothingItemService.getClothingItemsForLocation(locationId).subscribe(
             result => {
                 this.progress.hide();
@@ -53,7 +53,7 @@ export class LocationDetailComponent implements OnInit {
             },
             response => {
                 this.progress.hide();
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error loading clothing items', response);
             });
     }
 

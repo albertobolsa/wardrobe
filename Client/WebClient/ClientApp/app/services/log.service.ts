@@ -23,7 +23,7 @@ export class LogService {
             return res.json() as LogMessage[];
         }).subscribe(
             data => {},
-            error => console.log(error)
+            error => console.error(error)
         );
     }
 }

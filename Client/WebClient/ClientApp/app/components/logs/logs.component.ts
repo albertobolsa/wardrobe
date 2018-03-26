@@ -16,12 +16,12 @@ export class LogsComponent implements OnInit {
     constructor(private service: LogService, private progress: ProgressService, private errorService: ErrorService) {}
 
     ngOnInit() {
-        this.progress.show("Loading Event logs");
+        this.progress.show('Loading Event logs');
         this.service.getLogs().subscribe(result => {
             this.logMessages = result;
             this.progress.hide();
         }, error => {
-            this.errorService.showResponseError(error);
+            this.errorService.showResponseError('Error loading event logs', error);
             this.progress.hide();
         });
     }

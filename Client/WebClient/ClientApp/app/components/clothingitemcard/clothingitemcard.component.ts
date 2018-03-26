@@ -35,7 +35,7 @@ export class ClothingItemCardComponent {
 
     saveClothingItem() {
         if (!this.item.id) {
-            this.progress.show("Adding clothing item");
+            this.progress.show('Adding clothing item');
             this.clothingItemService.addClothingItem(this.item).subscribe(
                 res => {
                     this.isEdit = false;
@@ -44,10 +44,10 @@ export class ClothingItemCardComponent {
                 },
                 response => {
                     this.progress.hide();
-                    this.errorService.showResponseError(response);
+                    this.errorService.showResponseError('Error adding clothing item', response);
                 });
         } else {
-            this.progress.show("Saving clothing item");
+            this.progress.show('Saving clothing item');
             this.clothingItemService.updateClothingItem(this.item).subscribe(
                 res => {
                     this.isEdit = false;
@@ -56,13 +56,13 @@ export class ClothingItemCardComponent {
                 },
                 response => {
                     this.progress.hide();
-                    this.errorService.showResponseError(response);
+                    this.errorService.showResponseError('Error saving clothing item', response);
                 });
         }
     }
 
     deleteClothingItem() {
-        this.progress.show("Deleting clothing item");
+        this.progress.show('Deleting clothing item');
         this.clothingItemService.deleteClothingItem(this.item.id).subscribe(
             res => {
                 this.isEdit = false;
@@ -70,7 +70,7 @@ export class ClothingItemCardComponent {
             },
             response => {
                 this.progress.hide();
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error deleting clothing item', response);
             });
     }
 

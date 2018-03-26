@@ -13,7 +13,9 @@ export class LogFilterPipe implements PipeTransform {
             if (!it.message) {
                 return false;
             }
-            return it.message.toLowerCase().includes(searchText);
+            return it.message.toLowerCase().includes(searchText)
+                || it.stacktrace.toLowerCase().includes(searchText)
+                || it.source.toLowerCase().includes(searchText);
         });
     }
 }

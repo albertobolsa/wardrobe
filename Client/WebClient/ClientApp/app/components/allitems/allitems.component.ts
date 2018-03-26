@@ -31,7 +31,7 @@ export class AllItemsComponent {
             },
             response => {
                 this.progress.hide();
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error loading clothing items', response);
             });
     }
 

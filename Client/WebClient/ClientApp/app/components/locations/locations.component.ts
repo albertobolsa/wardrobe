@@ -37,20 +37,20 @@ export class LocationsComponent implements OnInit {
                 this.loadViewData();
             },
             response => {
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error writing location', response);
                 this.progress.hide();
             });
     }
 
     deleteLocationClick(event: object, locationId: string) {
-        this.progress.show('Removing Location');
+        this.progress.show('Deleting Location');
         this.service.deleteLocation(locationId).subscribe(
             res => {
                 this.progress.hide();
                 this.loadViewData();
             },
             response => {
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error deleting location', response);
                 this.progress.hide();
             });
     }
@@ -71,7 +71,7 @@ export class LocationsComponent implements OnInit {
                 }, 50);
             }, 
             response => {
-                this.errorService.showResponseError(response);
+                this.errorService.showResponseError('Error loading locations', response);
                 this.progress.hide();
             });
 

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Wardrobe.DataAccess.Context;
 using Wardrobe.Model.Entities.Logging;
+using Wardrobe.Model.Enums;
 
 namespace Wardrobe.Service.Logging
 {
@@ -49,6 +50,8 @@ namespace Wardrobe.Service.Logging
                 {
                     LogLevel = (int) logLevel,
                     Timestamp = DateTime.UtcNow,
+                    Stacktrace = exception.StackTrace,
+                    Source = LogSource.Service.ToString(),
                     Message = formatter(state, exception)
                 });
                 context.SaveChanges();

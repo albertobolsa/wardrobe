@@ -9,6 +9,8 @@ namespace Wardrobe.Model.Entities.Logging
         public int Id { get; set; }
         public int LogLevel { get; set; }
         public string Message { get; set; }
+        public string Stacktrace { get; set; }
+        public string Source { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }
