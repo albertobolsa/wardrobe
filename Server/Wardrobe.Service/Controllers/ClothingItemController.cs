@@ -20,7 +20,7 @@ namespace Wardrobe.Service.Controllers
         [HttpGet]
         public IEnumerable<ClothingItem> Get()
         {
-            return _service.GetClothingItems(Guid.NewGuid());
+            return _service.GetClothingItems();
         }
 
         [HttpGet("{id}", Name = "GetClothingItemById")]

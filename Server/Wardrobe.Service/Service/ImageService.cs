@@ -3,7 +3,9 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
+using Wardrobe.Service.Exceptions;
 using Wardrobe.Service.Interfaces;
+using Wardrobe.Service.Validation.Entities;
 
 namespace Wardrobe.Service.Service
 {
@@ -20,7 +22,7 @@ namespace Wardrobe.Service.Service
             var image = _repository.GetImage(imageId);
             if (image == null)
             {
-                throw new Exception("Image not found");
+                throw new Exception(string.Format(Resources.Error.ImageService_ImageNotFound_Template, imageId));
             }
 
             return image;
@@ -30,7 +32,7 @@ namespace Wardrobe.Service.Service
         {
             if (string.IsNullOrEmpty(clothingItemId))
             {
-                throw new Exception("Error");
+                throw new Exception(string.Format(Resources.Error.ImageService_InvalidClothingItemId_Template, clothingItemId));
             }
 
             if (files.Count > 0)
@@ -49,7 +51,16 @@ namespace Wardrobe.Service.Service
                         image.ImageFile = ms.ToArray();
                     }
 
-                    _repository.AddImage(image);
+                    var validationResult = image.Validate();
+                    if (validationResult.IsValid())
+                    {
+                        _repository.AddImage(image);
+                    }
+                    else
+                    {
+                        throw new ValidationException(validationResult);
+                    }
+
                     _repository.LinkImageToClothingItem(imageId: image.Id, clothingItemId: Guid.Parse(clothingItemId));
                 }
             }
@@ -59,7 +70,7 @@ namespace Wardrobe.Service.Service
         {
             if (string.IsNullOrEmpty(clothingItemId) || string.IsNullOrEmpty(imageId))
             {
-                throw new Exception("Error");
+                throw new Exception(string.Format(Resources.Error.ImageService_InvalidImageOrClothingItemId_Template, imageId, clothingItemId));
             }
 
             _repository.UnlinkImageToClothingItem(imageId: Guid.Parse(imageId), clothingItemId: Guid.Parse(clothingItemId));

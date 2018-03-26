@@ -6,7 +6,7 @@ namespace Wardrobe.Service.Interfaces
 {
     public interface IClothingItemService
     {
-        List<ClothingItem> GetClothingItems(Guid userId);
+        List<ClothingItem> GetClothingItems();
         ClothingItem GetClothingItemById(Guid clothingItemId);
         List<ClothingItem> GetClothingItemsByLocationId(Guid locationId);
         void AddLocation(ClothingItem clothingItem);

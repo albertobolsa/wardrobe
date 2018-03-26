@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
+using Wardrobe.Service.Exceptions;
 using Wardrobe.Service.Interfaces;
+using Wardrobe.Service.Validation.Entities;
 
 namespace Wardrobe.Service.Service
 {
@@ -14,9 +16,9 @@ namespace Wardrobe.Service.Service
             _repository = repository;
         }
 
-        public List<ClothingItem> GetClothingItems(Guid userId)
+        public List<ClothingItem> GetClothingItems()
         {
-            return _repository.GetClothingItems(userId);
+            return _repository.GetClothingItems();
         }
 
         public ClothingItem GetClothingItemById(Guid clothingItemId)
@@ -32,12 +34,29 @@ namespace Wardrobe.Service.Service
         public void AddLocation(ClothingItem clothingItem)
         {
             clothingItem.Id = Guid.NewGuid();
-            _repository.AddClothingItem(clothingItem);
+
+            var validationResult = clothingItem.Validate();
+            if (validationResult.IsValid())
+            {
+                _repository.AddClothingItem(clothingItem);
+            }
+            else
+            {
+                throw new ValidationException(validationResult);
+            }
         }
 
         public void UpdateClothingItem(Guid id, ClothingItem clothingItem)
         {
-            _repository.UpdateClothingItem(id, clothingItem);
+            var validationResult = clothingItem.Validate();
+            if (validationResult.IsValid())
+            {
+                _repository.UpdateClothingItem(id, clothingItem);
+            }
+            else
+            {
+                throw new ValidationException(validationResult);
+            }
         }
 
         public void DeleteClothingItem(Guid id)

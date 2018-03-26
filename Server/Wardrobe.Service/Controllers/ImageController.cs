@@ -25,7 +25,6 @@ namespace Wardrobe.Service.Controllers
         [HttpPost("Link/{id}", Name = "ImagePost")]
         public HttpResponseMessage PostImage()
         {
-            
             var httpRequest = HttpContext.Request;
             var clothingItemId = httpRequest.Form["clothingItemId"];
 

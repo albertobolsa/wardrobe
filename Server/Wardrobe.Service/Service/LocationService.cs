@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Wardrobe.DataAccess.Interfaces;
 using Wardrobe.Model.Entities;
+using Wardrobe.Service.Exceptions;
 using Wardrobe.Service.Interfaces;
+using Wardrobe.Service.Validation.Entities;
 
 namespace Wardrobe.Service.Service
 {
@@ -10,15 +12,15 @@ namespace Wardrobe.Service.Service
     {
         private readonly Guid TMP_USER = Guid.Parse("bef713c4-049a-42e8-b0f0-cfcee4cc7e2c");
         private readonly IWardrobeRepository _repository;
-
+        
         public LocationService(IWardrobeRepository repository)
         {
             _repository = repository;
         }
 
-        public List<Location> GetLocations(Guid userId)
+        public List<Location> GetLocations()
         {
-            return _repository.GetLocations(userId);
+            return _repository.GetLocations();
         }
 
         public Location GetLocationById(Guid locationId)
@@ -30,17 +32,34 @@ namespace Wardrobe.Service.Service
         {
             location.UserId = TMP_USER;
             location.Id = Guid.NewGuid();
-            _repository.AddLocation(location);
+
+            var validationResult = location.Validate();
+            if (validationResult.IsValid())
+            {
+                _repository.AddLocation(location);
+            }
+            else
+            {
+                throw new ValidationException(validationResult);
+            }
         }
 
-        public void UpdateLocation(Guid id, Location location)
+        public void UpdateLocation(Guid locationId, Location location)
         {
-            _repository.UpdateLocation(id, location);
+            var validationResult = location.Validate();
+            if (validationResult.IsValid())
+            {
+                _repository.UpdateLocation(locationId, location);
+            }
+            else
+            {
+                throw new ValidationException(validationResult);
+            }
         }
 
-        public void DeleteLocation(Guid id)
+        public void DeleteLocation(Guid locationId)
         {
-            _repository.DeleteLocation(id);
+            _repository.DeleteLocation(locationId);
         }
     }
 }

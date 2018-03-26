@@ -7,7 +7,7 @@ namespace Wardrobe.DataAccess.Repository
 {
     public partial class WardrobeRepository
     {
-        public List<Location> GetLocations(Guid userId)
+        public List<Location> GetLocations()
         {
             return _context.Locations.ToList();
         }

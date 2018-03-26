@@ -6,10 +6,10 @@ namespace Wardrobe.Service.Interfaces
 {
     public interface ILocationService
     {
-        List<Location> GetLocations(Guid userId);
+        List<Location> GetLocations();
         Location GetLocationById(Guid locationId);
         void AddLocation(Location location);
-        void UpdateLocation(Guid id, Location location);
-        void DeleteLocation(Guid id);
+        void UpdateLocation(Guid locationId, Location location);
+        void DeleteLocation(Guid locationId);
     }
 }

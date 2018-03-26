@@ -6,13 +6,13 @@ namespace Wardrobe.DataAccess.Interfaces
 {
     public interface IWardrobeRepository
     {
-        List<Location> GetLocations(Guid userId);
+        List<Location> GetLocations();
         Location GetLocationById(Guid locationId);
         void AddLocation(Location location);
         void UpdateLocation(Guid id, Location location);
         void DeleteLocation(Guid id);
 
-        List<ClothingItem> GetClothingItems(Guid userId);
+        List<ClothingItem> GetClothingItems();
         ClothingItem GetClothingItemById(Guid clothingItemId);
         List<ClothingItem> GetClothingItemsByLocationId(Guid locationId);
         void AddClothingItem(ClothingItem clothingItem);

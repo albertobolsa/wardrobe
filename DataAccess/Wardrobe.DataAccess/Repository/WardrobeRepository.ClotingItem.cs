@@ -8,7 +8,7 @@ namespace Wardrobe.DataAccess.Repository
 {
     public partial class WardrobeRepository
     {
-        public List<ClothingItem> GetClothingItems(Guid userId)
+        public List<ClothingItem> GetClothingItems()
         {
             return _context.ClothingItems
                            .Include(c => c.Images)

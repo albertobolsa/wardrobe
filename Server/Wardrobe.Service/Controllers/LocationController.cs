@@ -20,7 +20,7 @@ namespace Wardrobe.Service.Controllers
         [HttpGet]
         public IEnumerable<Location> Get()
         {
-            return _service.GetLocations(Guid.NewGuid());
+            return _service.GetLocations();
         }
 
         [HttpGet("{id}", Name = "GetLocation")]
