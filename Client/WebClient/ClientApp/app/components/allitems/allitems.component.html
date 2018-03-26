@@ -5,8 +5,14 @@
     <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
 </div>
 <div [hidden]="!isNewItemOpen">
-    <clothing-item-card [item]="newItem" [isEdit]="true"></clothing-item-card>
+    <clothing-item-card [item]="newItem" [isEdit]="isEdit"
+                        (onDiscarded)="onDiscardedHandler($event)"
+                        (onSaved)="refreshViewHandler($event)"
+                        (onDeleted)="refreshViewHandler($event)"
+                        (onImagesChanged)="refreshViewHandler($event)">
+    </clothing-item-card>
 </div>
 <div class="item-card" *ngFor="let item of clothingItems | clothingItemFilter : searchText">
-    <clothing-item-card [item]="item"></clothing-item-card>
+    <clothing-item-card [item]="item" (onSaved)="refreshViewHandler($event)" (onDeleted)="refreshViewHandler($event)" (onImagesChanged)="refreshViewHandler($event)">
+    </clothing-item-card>
 </div>

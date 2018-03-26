@@ -12,9 +12,11 @@ import { ErrorService } from "../../services/error.service";
     templateUrl: './locationdetail.component.html'
 })
 export class LocationDetailComponent implements OnInit {
+
     public location: WardrobeLocation;
     public clothingItems: ClothingItem[];
     public isNewItemOpen: boolean = false;
+    public isEdit: boolean = true;
     public newItem: ClothingItem = new ClothingItem();
 
     constructor(
@@ -59,5 +61,14 @@ export class LocationDetailComponent implements OnInit {
         this.isNewItemOpen = true;
         this.newItem = new ClothingItem();
         this.newItem.locationId = this.location.id;
+    }
+
+    onDiscardedHandler(item: ClothingItem) {
+        this.isNewItemOpen = false;
+    }
+
+    refreshViewHandler(item: ClothingItem) {
+        this.isNewItemOpen = false;
+        this.loadItems(this.location.id);
     }
 }

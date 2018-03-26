@@ -11,6 +11,7 @@ import { ErrorService } from "../../services/error.service";
 })
 export class AllItemsComponent {
 
+    public isEdit: boolean = true;
     public isNewItemOpen: boolean = false;
     public clothingItems: ClothingItem[];
     public newItem: ClothingItem = new ClothingItem();
@@ -37,5 +38,15 @@ export class AllItemsComponent {
     newItemClick(event: object) {
         this.isNewItemOpen = true;
         this.newItem = new ClothingItem();
+        this.isEdit = true;
+    }
+
+    onDiscardedHandler(item: ClothingItem) {
+        this.isNewItemOpen = false;
+    }
+
+    refreshViewHandler(item: ClothingItem) {
+        this.isNewItemOpen = false;
+        this.loadViewData();
     }
 }

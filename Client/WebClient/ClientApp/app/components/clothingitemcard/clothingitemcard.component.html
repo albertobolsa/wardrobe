@@ -19,19 +19,19 @@
                     <label for="type">Purchased at</label>
                     <input type="text" [(ngModel)]="item.purchaseLocation" class="form-control" name="purchaseLocation" id="purchaseLocation" placeholder="Purchased at" [attr.disabled]="isEdit ? null : ''">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label for="price">Price</label>
-                    <input type="text" [(ngModel)]="item.price" class="form-control" name="price" id="price" placeholder="Price" [attr.disabled]="isEdit ? null : ''">
+                    <input type="number" [(ngModel)]="item.price" class="form-control" name="price" id="price" placeholder="Price" [attr.disabled]="isEdit ? null : ''">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label for="size">Currency</label>
                     <input type="text" [(ngModel)]="item.currency" class="form-control" name="currency" id="currency" placeholder="Currency" [attr.disabled]="isEdit ? null : ''">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-1">
                     <label for="isFit">Fits</label>
                     <input class="form-check-input form-control" [(ngModel)]="item.isFit" name="isFit" type="checkbox" id="isFit" [attr.disabled]="isEdit ? null : ''">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-1">
                     <label for="isArchived">Archived</label>
                     <input class="form-check-input form-control" [(ngModel)]="item.isArchived" name="isArchived" type="checkbox" id="isArchived" [attr.disabled]="isEdit ? null : ''">
                 </div>
@@ -50,7 +50,7 @@
         <input *ngIf="isEdit && item.id" type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="btn upload" />
         <button *ngIf="!isEdit" class="btn btn-primary" (click)="isEdit = !isEdit">Edit</button>
         <button *ngIf="isEdit" class="btn btn-primary" (click)="saveClothingItem()">Save</button>
-        <button *ngIf="isEdit" class="btn" (click)="isEdit=!isEdit">Discard</button>
+        <button *ngIf="isEdit" class="btn" (click)="discardClothingItem()">Discard</button>
         <button *ngIf="item.id"class="btn btn-danger" (click)="deleteClothingItem()">Delete</button>
     </div>
 </div>
