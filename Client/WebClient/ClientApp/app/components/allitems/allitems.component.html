@@ -1,4 +1,4 @@
-﻿<div class="input-group">
+﻿<div class="input-group search-bar">
     <span class="input-group-btn">
         <button class="btn" (click)="newItemClick($event)">New</button>
     </span>
@@ -7,6 +7,6 @@
 <div [hidden]="!isNewItemOpen">
     <clothing-item-card [item]="newItem" [isEdit]="true"></clothing-item-card>
 </div>
-<div class="location-card" *ngFor="let item of clothingItems | clothingItemFilter : searchText">
+<div class="item-card" *ngFor="let item of clothingItems | clothingItemFilter : searchText">
     <clothing-item-card [item]="item"></clothing-item-card>
 </div>

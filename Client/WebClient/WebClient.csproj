@@ -23,6 +23,7 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\allitems\allitems.component.ts" />
     <None Remove="ClientApp\app\components\clothingitemcard\clothingitemcard.component.ts" />
+    <None Remove="ClientApp\app\components\errormessage\errormessage.component.ts" />
     <None Remove="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <None Remove="ClientApp\app\components\locations\locations.component.ts" />
     <None Remove="ClientApp\app\components\logs\logs.component.ts" />
@@ -37,16 +38,18 @@
     <None Remove="ClientApp\app\pipes\ClothingItemPipe.ts" />
     <None Remove="ClientApp\app\pipes\LocationPipe.ts" />
     <None Remove="ClientApp\app\pipes\LogMessagePipe.ts" />
-    <None Remove="ClientApp\app\services\clothingItemService.ts" />
-    <None Remove="ClientApp\app\services\imageService.ts" />
+    <None Remove="ClientApp\app\services\clothingItem.service.ts" />
+    <None Remove="ClientApp\app\services\error.service.ts" />
+    <None Remove="ClientApp\app\services\image.service.ts" />
     <None Remove="ClientApp\app\services\log.service.ts" />
-    <None Remove="ClientApp\app\services\progressService.ts" />
-    <None Remove="ClientApp\app\services\wardrobeservice.ts" />
+    <None Remove="ClientApp\app\services\progress.service.ts" />
+    <None Remove="ClientApp\app\services\wardrobe.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\allitems\allitems.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\clothingitemcard\clothingitemcard.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\errormessage\errormessage.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\locations\locations.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\logs\logs.component.ts" />
@@ -61,11 +64,12 @@
     <TypeScriptCompile Include="ClientApp\app\pipes\ClothingItemPipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\pipes\LocationPipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\pipes\LogMessagePipe.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\clothingItemService.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\imageService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\clothingItem.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\error.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\image.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\log.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\progressService.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\wardrobeservice.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\progress.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\wardrobe.service.ts" />
   </ItemGroup>
 
   <ItemGroup>

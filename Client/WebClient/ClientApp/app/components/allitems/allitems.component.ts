@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ClothingItem } from "../../entities/ClothingItem";
-import { ClothingItemService } from "../../services/clothingItemService";
-import { ProgressService } from "../../services/progressService";
+import { ClothingItemService } from "../../services/clothingItem.service";
+import { ProgressService } from "../../services/progress.service";
+import { ErrorService } from "../../services/error.service";
 
 @Component({
     selector: 'all-items',
@@ -14,22 +15,23 @@ export class AllItemsComponent {
     public clothingItems: ClothingItem[];
     public newItem: ClothingItem = new ClothingItem();
 
-    constructor(private service: ClothingItemService, private progress: ProgressService) { }
+    constructor(private service: ClothingItemService, private progress: ProgressService, private errorService: ErrorService) { }
 
     ngOnInit() {
         this.loadViewData();
     }
 
-    private loadViewData() {
-
+    loadViewData() {
         this.progress.show('Loading clothing items');
-        this.service.getAllClothingItems().subscribe(result => {
-            this.clothingItems = result;
-            this.progress.hide();
-        }, error => {
-            console.error(error);
-            this.progress.hide();
-        });
+        this.service.getAllClothingItems().subscribe(
+            result => {
+                this.progress.hide();
+                this.clothingItems = result;
+            },
+            response => {
+                this.progress.hide();
+                this.errorService.showResponseError(response);
+            });
     }
 
     newItemClick(event: object) {

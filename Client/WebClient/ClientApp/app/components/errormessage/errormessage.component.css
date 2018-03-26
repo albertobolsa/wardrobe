@@ -1,0 +1,25 @@
+﻿.error-message-hidden {
+    visibility: hidden;
+}
+
+.error-message-message {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 500001;
+    vertical-align: middle;
+    font-size: larger;
+    font-weight: bold;
+    color: red;
+    background: black;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.error-dismiss-button {
+    color: black;
+    float: right;
+}

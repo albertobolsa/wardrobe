@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { ClothingItem } from "../../entities/ClothingItem";
-import { ImageService } from "../../services/imageService";
-import { ClothingItemService } from "../../services/clothingItemService";
+import { ImageService } from "../../services/image.service";
+import { ClothingItemService } from "../../services/clothingItem.service";
 import { environment } from "../../environments/environment";
 
 @Component({

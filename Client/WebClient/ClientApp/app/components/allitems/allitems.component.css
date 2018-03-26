@@ -1,4 +1,9 @@
-﻿.location-card {
+﻿.item-card {
     display: inline-block;
     vertical-align: top;
+}
+
+.search-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

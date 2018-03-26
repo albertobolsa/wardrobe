@@ -14,12 +14,14 @@ import { TransferComponent } from './components/transfer/transfer.component';
 import { ClothingItemCardComponent } from "./components/clothingitemcard/clothingitemcard.component";
 import { LogsComponent } from "./components/logs/logs.component";
 import { ProgressComponent } from "./components/progress/progress.component";
+import { ErrorMessageComponent } from "./components/errormessage/errormessage.component";
 
-import { WardrobeService } from "./services/wardrobeservice";
-import { ClothingItemService } from "./services/clothingItemService";
-import { ImageService } from "./services/imageService";
+import { WardrobeService } from "./services/wardrobe.service";
+import { ClothingItemService } from "./services/clothingItem.service";
+import { ImageService } from "./services/image.service";
 import { LogService } from "./services/log.service";
-import { ProgressService } from "./services/progressService";
+import { ProgressService } from "./services/progress.service";
+import { ErrorService } from "./services/error.service";
 
 import { AppErrorHandler } from "./handlers/AppErrorHandler";
 import { LogFilterPipe } from "./pipes/LogMessagePipe";
@@ -37,7 +39,9 @@ import { LocationFilterPipe } from "./pipes/LocationPipe";
         TransferComponent,
         ClothingItemCardComponent,
         LogsComponent,
-        LogFilterPipe, ClothingItemFilterPipe, LocationFilterPipe, ProgressComponent
+        ProgressComponent,
+        ErrorMessageComponent,
+        LogFilterPipe, ClothingItemFilterPipe, LocationFilterPipe
     ],
     imports: [
         CommonModule,
@@ -60,6 +64,7 @@ import { LocationFilterPipe } from "./pipes/LocationPipe";
         ImageService,
         LogService,
         ProgressService,
+        ErrorService,
         { provide: ErrorHandler, useClass: AppErrorHandler }
     ]
 })

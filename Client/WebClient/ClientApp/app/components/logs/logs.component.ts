@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { LogService } from "../../services/log.service";
 import { LogMessage } from "../../entities/LogMessage";
-import { ProgressService } from "../../services/progressService";
+import { ProgressService } from "../../services/progress.service";
+import { ErrorService } from "../../services/error.service";
 
 @Component({
     selector: 'logs',
@@ -9,19 +10,19 @@ import { ProgressService } from "../../services/progressService";
     styleUrls: ['./logs.component.css']
 })
 export class LogsComponent implements OnInit {
+
     public logMessages: LogMessage[];
 
-    constructor(private service: LogService, private progress: ProgressService) {}
+    constructor(private service: LogService, private progress: ProgressService, private errorService: ErrorService) {}
 
     ngOnInit() {
-
         this.progress.show("Loading Event logs");
         this.service.getLogs().subscribe(result => {
             this.logMessages = result;
-            //this.progress.hide();
+            this.progress.hide();
         }, error => {
-            console.error(error);
-            //this.progress.hide();
+            this.errorService.showResponseError(error);
+            this.progress.hide();
         });
     }
 }

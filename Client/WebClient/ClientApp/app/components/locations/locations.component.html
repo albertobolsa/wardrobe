@@ -1,4 +1,4 @@
-﻿<div class="input-group">
+﻿<div class="input-group search-bar">
     <span class="input-group-btn">
         <button class="btn" (click)="newLocationClick($event)">New</button>
     </span>
@@ -9,21 +9,22 @@
         <div class="panel-heading">
             <input type="text" class="form-control" [(ngModel)]="newLocation.name" placeholder="Location" />
         </div>
-        <input type="text" class="form-control" [(ngModel)]="newLocation.latitude" placeholder="Latitude"/>
-        <input type="text" class="form-control" [(ngModel)]="newLocation.longitude" placeholder="Longitude" />
+        <p>Click on the map to select a location</p>
         <div id="map-new" class="map">
             Loading map
         </div>
+        <input type="text"class="form-control" [(ngModel)]="newLocation.latitude" disabled placeholder="Latitude" />
+        <input type="text"class="form-control" [(ngModel)]="newLocation.longitude" disabled placeholder="Longitude" />
         <div class="panel-footer">
             <button class="btn btn-primary" (click)="saveLocationClick($event)">Save</button>
-            <button class="btn" (click)="discardLocationClick($event)">Discard</button>
+            <button class="btn" (click)="isNewLocationOpen=false">Discard</button>
         </div>
     </div>
 </div>
 
 <div class="panel panel-default location-card" *ngFor="let location of locations | locationFilter : searchText">
     <div class="panel-heading">
-        <a [routerLink]="['/location-detail', location.id]"> {{ location.name }} </a>
+        <a [routerLink]="['/location-detail', location.id]"><h4>{{ location.name }}</h4></a>
     </div>
     <div id="map-{{ location.id }}" class="map">
         Loading map

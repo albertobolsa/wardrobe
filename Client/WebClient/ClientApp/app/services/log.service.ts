@@ -18,12 +18,12 @@ export class LogService {
     }
 
     writeError(message: LogMessage) {
-        console.dir(message);
+
         return this.http.post(environment.serviceUrl + '/api/Logging', message).map(res => {
             return res.json() as LogMessage[];
         }).subscribe(
-            data => console.log('success'),
+            data => {},
             error => console.log(error)
-        );;
+        );
     }
 }

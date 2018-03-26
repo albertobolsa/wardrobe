@@ -1,8 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { } from '@types/googlemaps';
 import { WardrobeLocation } from "../../entities/location";
-import { WardrobeService } from "../../services/wardrobeservice";
-import { ProgressService } from "../../services/progressService";
+import { WardrobeService } from "../../services/wardrobe.service";
+import { ProgressService } from "../../services/progress.service";
+import { ErrorService } from "../../services/error.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +17,7 @@ export class LocationsComponent implements OnInit {
     public newLocation: WardrobeLocation = new WardrobeLocation();
     public isNewLocationOpen: boolean = false;
 
-    constructor(private service: WardrobeService, private router: Router, private progress: ProgressService) { }
+    constructor(private service: WardrobeService, private router: Router, private progress: ProgressService, private errorService: ErrorService) { }
 
     ngOnInit() {
         this.loadViewData();
@@ -35,51 +36,44 @@ export class LocationsComponent implements OnInit {
                 this.progress.hide();
                 this.loadViewData();
             },
-            err => {
-                console.error(err);
-                alert("Error occured");
+            response => {
+                this.errorService.showResponseError(response);
                 this.progress.hide();
             });
     }
 
-    discardLocationClick(event: object) {
-        this.isNewLocationOpen = false;
-    }
-
     deleteLocationClick(event: object, locationId: string) {
-
         this.progress.show('Removing Location');
         this.service.deleteLocation(locationId).subscribe(
             res => {
                 this.progress.hide();
                 this.loadViewData();
             },
-            err => {
-                console.error(err);
-                alert("Error occured");
+            response => {
+                this.errorService.showResponseError(response);
                 this.progress.hide();
             });
     }
 
-    private loadViewData() {
-
+    loadViewData() {
         this.progress.show('Loading locations');
-        this.service.getLocations().subscribe(result => {
-            this.locations = result;
-
-            setTimeout(() => {
-                for (let location of this.locations) {
-                    var map = new google.maps.Map(document.getElementById('map-' + location.id), {
-                        center: { lat: location.latitude, lng: location.longitude },
-                        zoom: 12, disableDefaultUI: true
-                    });
-                }
+        this.service.getLocations().subscribe(
+            result => {
+                this.locations = result;
+                setTimeout(() => {
+                    for (let location of this.locations) {
+                        var map = new google.maps.Map(document.getElementById('map-' + location.id), {
+                            center: { lat: location.latitude, lng: location.longitude },
+                            zoom: 12, disableDefaultUI: true
+                        });
+                    }
+                    this.progress.hide();
+                }, 50);
+            }, 
+            response => {
+                this.errorService.showResponseError(response);
                 this.progress.hide();
-            }, 50);
-        }, error => {
-            console.error(error);
-            this.progress.hide();
-        });
+            });
 
         var map = new google.maps.Map(document.getElementById('map-new'), {
             center: { lat: 47.366670, lng: 47.366670 },
