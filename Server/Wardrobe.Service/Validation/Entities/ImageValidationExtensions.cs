@@ -22,7 +22,7 @@ namespace Wardrobe.Service.Validation.Entities
                 result.AddError(V.Image_Name, V.Image_Name_Invalid);
             }
 
-            if (image.ImageFile.Length == 0)
+            if (image.ImageFile == null || image.ImageFile.Length == 0)
             {
                 result.AddError(V.Image_ImageFile, V.Image_ImageFile_Invalid);
             }

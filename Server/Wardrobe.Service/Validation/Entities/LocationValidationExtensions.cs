@@ -27,7 +27,7 @@ namespace Wardrobe.Service.Validation.Entities
                 result.AddError(V.Location_Latitude, V.Location_Latitude_Invalid);
             }
 
-            if (location.Latitude < -180 || location.Latitude > 180)
+            if (location.Longitude < -180 || location.Longitude > 180)
             {
                 result.AddError(V.Location_Longitude, V.Location_Longitude_Invalid);
             }
