@@ -13,7 +13,7 @@ export class ErrorService {
     constructor(private logService: LogService) { }
 
     showError(message: string, error: any) {
-        console.error(message);
+        console.error(error);
         var log = new LogMessage();
         log.logLevel = 4;
         log.message = message;
