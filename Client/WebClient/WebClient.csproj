@@ -26,9 +26,11 @@
     <None Remove="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <None Remove="ClientApp\app\components\locations\locations.component.ts" />
     <None Remove="ClientApp\app\components\logs\logs.component.ts" />
+    <None Remove="ClientApp\app\components\progress\progress.component.ts" />
     <None Remove="ClientApp\app\entities\clothingItem.ts" />
     <None Remove="ClientApp\app\entities\location.ts" />
     <None Remove="ClientApp\app\entities\LogMessage.ts" />
+    <None Remove="ClientApp\app\entities\progressState.ts" />
     <None Remove="ClientApp\app\environments\environment.dev.ts" />
     <None Remove="ClientApp\app\environments\environment.ts" />
     <None Remove="ClientApp\app\handlers\AppErrorHandler.ts" />
@@ -38,6 +40,7 @@
     <None Remove="ClientApp\app\services\clothingItemService.ts" />
     <None Remove="ClientApp\app\services\imageService.ts" />
     <None Remove="ClientApp\app\services\log.service.ts" />
+    <None Remove="ClientApp\app\services\progressService.ts" />
     <None Remove="ClientApp\app\services\wardrobeservice.ts" />
   </ItemGroup>
 
@@ -47,9 +50,11 @@
     <TypeScriptCompile Include="ClientApp\app\components\locationdetail\locationdetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\locations\locations.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\logs\logs.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\progress\progress.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\entities\ClothingItem.ts" />
     <TypeScriptCompile Include="ClientApp\app\entities\location.ts" />
     <TypeScriptCompile Include="ClientApp\app\entities\LogMessage.ts" />
+    <TypeScriptCompile Include="ClientApp\app\entities\ProgressState.ts" />
     <TypeScriptCompile Include="ClientApp\app\environments\environment.dev.ts" />
     <TypeScriptCompile Include="ClientApp\app\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\app\handlers\AppErrorHandler.ts" />
@@ -59,6 +64,7 @@
     <TypeScriptCompile Include="ClientApp\app\services\clothingItemService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\imageService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\log.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\progressService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\wardrobeservice.ts" />
   </ItemGroup>
 

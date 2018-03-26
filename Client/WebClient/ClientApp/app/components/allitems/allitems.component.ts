@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ClothingItem } from "../../entities/ClothingItem";
 import { ClothingItemService } from "../../services/clothingItemService";
+import { ProgressService } from "../../services/progressService";
 
 @Component({
     selector: 'all-items',
@@ -9,25 +10,25 @@ import { ClothingItemService } from "../../services/clothingItemService";
 })
 export class AllItemsComponent {
 
-    public isLoading: boolean = true;
     public isNewItemOpen: boolean = false;
     public clothingItems: ClothingItem[];
     public newItem: ClothingItem = new ClothingItem();
 
-    constructor(private service: ClothingItemService) { }
+    constructor(private service: ClothingItemService, private progress: ProgressService) { }
 
     ngOnInit() {
         this.loadViewData();
     }
 
     private loadViewData() {
-        this.isLoading = true;
+
+        this.progress.show('Loading clothing items');
         this.service.getAllClothingItems().subscribe(result => {
             this.clothingItems = result;
-            this.isLoading = false;
+            this.progress.hide();
         }, error => {
             console.error(error);
-            this.isLoading = false;
+            this.progress.hide();
         });
     }
 

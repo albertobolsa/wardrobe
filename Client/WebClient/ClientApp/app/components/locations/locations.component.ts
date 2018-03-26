@@ -2,6 +2,7 @@
 import { } from '@types/googlemaps';
 import { WardrobeLocation } from "../../entities/location";
 import { WardrobeService } from "../../services/wardrobeservice";
+import { ProgressService } from "../../services/progressService";
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,13 +11,12 @@ import { Router } from '@angular/router';
     styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent implements OnInit {
+
     public locations: WardrobeLocation[];
     public newLocation: WardrobeLocation = new WardrobeLocation();
     public isNewLocationOpen: boolean = false;
-    public isLoading: boolean = true;
-    public isProcessingRequest: boolean = false;
 
-    constructor(private service: WardrobeService, private router: Router) { }
+    constructor(private service: WardrobeService, private router: Router, private progress: ProgressService) { }
 
     ngOnInit() {
         this.loadViewData();
@@ -29,16 +29,16 @@ export class LocationsComponent implements OnInit {
 
     saveLocationClick(event: object) {
         this.isNewLocationOpen = false;
-        this.isProcessingRequest = true;
+        this.progress.show('Writing Location');
         this.service.addLocation(this.newLocation).subscribe(
             res => {
+                this.progress.hide();
                 this.loadViewData();
-                this.isProcessingRequest = false;
             },
             err => {
                 console.error(err);
                 alert("Error occured");
-                this.isProcessingRequest = false;
+                this.progress.hide();
             });
     }
 
@@ -47,21 +47,23 @@ export class LocationsComponent implements OnInit {
     }
 
     deleteLocationClick(event: object, locationId: string) {
-        this.isProcessingRequest = true;
+
+        this.progress.show('Removing Location');
         this.service.deleteLocation(locationId).subscribe(
             res => {
+                this.progress.hide();
                 this.loadViewData();
-                this.isProcessingRequest = false;
             },
             err => {
                 console.error(err);
                 alert("Error occured");
-                this.isProcessingRequest = false;
+                this.progress.hide();
             });
     }
 
     private loadViewData() {
-        this.isLoading = true;
+
+        this.progress.show('Loading locations');
         this.service.getLocations().subscribe(result => {
             this.locations = result;
 
@@ -72,11 +74,11 @@ export class LocationsComponent implements OnInit {
                         zoom: 12, disableDefaultUI: true
                     });
                 }
-                this.isLoading = false;
+                this.progress.hide();
             }, 50);
         }, error => {
             console.error(error);
-            this.isLoading = false;
+            this.progress.hide();
         });
 
         var map = new google.maps.Map(document.getElementById('map-new'), {
