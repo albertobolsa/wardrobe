@@ -11,9 +11,12 @@ namespace Wardrobe.Service.Service
     public class ClothingItemService : IClothingItemService
     {
         private readonly IWardrobeRepository _repository;
-        public ClothingItemService(IWardrobeRepository repository)
+        private readonly IImageRepository _imageRepository;
+
+        public ClothingItemService(IWardrobeRepository repository, IImageRepository imageRepository)
         {
             _repository = repository;
+            _imageRepository = imageRepository;
         }
 
         public List<ClothingItem> GetClothingItems()
@@ -61,7 +64,35 @@ namespace Wardrobe.Service.Service
 
         public void DeleteClothingItem(Guid id)
         {
+            var item = GetClothingItemById(id);
+            foreach (var itemImage in item.Images)
+            {
+                _imageRepository.UnlinkImageToClothingItem(imageId: itemImage.ImageId, clothingItemId: id);
+            }
+
             _repository.DeleteClothingItem(id);
+        }
+
+        public void TransferClothingItem(TransferItem transferItem)
+        {
+            var clothingItem = GetClothingItemById(transferItem.ClothingItemId);
+
+            if (clothingItem == null)
+            {
+                throw new Exception(Resources.Error.ClothingItemService_ClothingItemNotFound);
+            }
+
+            clothingItem.LocationId = transferItem.LocationId;
+
+            var validationResult = clothingItem.Validate();
+            if (validationResult.IsValid())
+            {
+                _repository.UpdateClothingItem(clothingItem.Id, clothingItem);
+            }
+            else
+            {
+                throw new ValidationException(validationResult);
+            }
         }
     }
 }

@@ -1,1 +1,18 @@
 ﻿<h1>Transfer</h1>
+
+<select class="form-control" [(ngModel)]="selectedItem">
+    <option *ngFor="let item of clothingItems" [ngValue]="item.id">
+        {{item.type}} - {{item.comments}}
+    </option>
+</select>
+<br />
+To
+<br />
+<br />
+<select class="form-control" [(ngModel)]="selectedLocation">
+    <option *ngFor="let location of locations" [ngValue]="location.id">
+        {{location.name}}
+    </option>
+</select>
+<br />
+<button class="btn btn-primary" (click)="transferClick($event)">Transfer</button>

@@ -50,7 +50,7 @@ namespace Wardrobe.Service.Logging
                 {
                     LogLevel = (int) logLevel,
                     Timestamp = DateTime.UtcNow,
-                    Stacktrace = exception.StackTrace,
+                    Stacktrace = exception?.StackTrace,
                     Source = LogSource.Service.ToString(),
                     Message = formatter(state, exception)
                 });

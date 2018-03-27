@@ -61,6 +61,15 @@ namespace Wardrobe.Service.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clothing item not found.
+        /// </summary>
+        public static string ClothingItemService_ClothingItemNotFound {
+            get {
+                return ResourceManager.GetString("ClothingItemService_ClothingItemNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image not found: {0}.
         /// </summary>
         public static string ImageService_ImageNotFound_Template {

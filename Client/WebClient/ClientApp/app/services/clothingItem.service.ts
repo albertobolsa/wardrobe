@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ClothingItem } from "../entities/ClothingItem";
 import { environment } from "../environments/environment";
@@ -33,5 +33,10 @@ export class ClothingItemService {
 
     deleteClothingItem(clothingItemId: string): Observable<object> {
         return this.http.delete(environment.serviceUrl + '/api/ClothingItem/' + clothingItemId);
+    }
+
+    transferItem(clothingItemId: string, locationId: string): Observable<object> {
+
+        return this.http.post(environment.serviceUrl + '/api/ClothingItem/transfer', { clothingItemId: clothingItemId, locationId: locationId });
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using Wardrobe.Model.Entities;
 using Wardrobe.Service.Interfaces;
 
@@ -51,6 +52,12 @@ namespace Wardrobe.Service.Controllers
         public void Delete(Guid id)
         {
             _service.DeleteClothingItem(id);
+        }
+
+        [HttpPost("transfer")]
+        public void Transfer([FromBody]TransferItem transferItem)
+        {
+            _service.TransferClothingItem(transferItem: transferItem);
         }
     }
 }

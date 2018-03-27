@@ -12,5 +12,6 @@ namespace Wardrobe.Service.Interfaces
         void AddLocation(ClothingItem clothingItem);
         void UpdateClothingItem(Guid id, ClothingItem clothingItem);
         void DeleteClothingItem(Guid id);
+        void TransferClothingItem(TransferItem transferItem);
     }
 }

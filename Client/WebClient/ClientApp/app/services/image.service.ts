@@ -34,8 +34,6 @@ export class ImageService {
         formData.append('clothingItemId', clothingItemId);
         formData.append('imageId', imageId);
 
-        console.dir(formData);
-
         let headers = new Headers();
         let options = new RequestOptions({ headers: headers });
         return this.http.post(environment.serviceUrl + 'Image/Unlink', formData, options).map(res => res.json()).catch(error => Observable.throw(error))

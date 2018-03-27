@@ -17,7 +17,9 @@ namespace Wardrobe.DataAccess.Repository
 
         public ClothingItem GetClothingItemById(Guid clothingItemId)
         {
-            return _context.ClothingItems.SingleOrDefault(c => c.Id == clothingItemId);
+            return _context.ClothingItems
+                           .Include(c => c.Images)
+                           .SingleOrDefault(c => c.Id == clothingItemId);
         }
 
         public List<ClothingItem> GetClothingItemsByLocationId(Guid locationId)
