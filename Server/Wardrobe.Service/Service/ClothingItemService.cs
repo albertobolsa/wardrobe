@@ -11,12 +11,10 @@ namespace Wardrobe.Service.Service
     public class ClothingItemService : IClothingItemService
     {
         private readonly IWardrobeRepository _repository;
-        private readonly IImageRepository _imageRepository;
 
-        public ClothingItemService(IWardrobeRepository repository, IImageRepository imageRepository)
+        public ClothingItemService(IWardrobeRepository repository)
         {
             _repository = repository;
-            _imageRepository = imageRepository;
         }
 
         public List<ClothingItem> GetClothingItems()
