@@ -64,12 +64,6 @@ namespace Wardrobe.Service.Service
 
         public void DeleteClothingItem(Guid id)
         {
-            var item = GetClothingItemById(id);
-            foreach (var itemImage in item.Images)
-            {
-                _imageRepository.UnlinkImageToClothingItem(imageId: itemImage.ImageId, clothingItemId: id);
-            }
-
             _repository.DeleteClothingItem(id);
         }
 
